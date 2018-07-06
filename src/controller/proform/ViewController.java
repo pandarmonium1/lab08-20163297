@@ -5,10 +5,14 @@ import pmf.entity.*;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.appengine.api.users.UserServiceFactory;
+
 import model.entity.*;
 
 @SuppressWarnings("serial")
@@ -20,13 +24,29 @@ public class ViewController extends HttpServlet {
 	}
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		
+		com.google.appengine.api.users.User uGoogle =UserServiceFactory.getUserService().getCurrentUser();
+		if(uGoogle==null){
+			RequestDispatcher dp= getServletContext().getRequestDispatcher("/WEB-INF/Views/Errors/error.jsp");
+			dp.forward(request, response);
+		}
+		else{
+			PersistenceManager accesoControlador=PMF.get().getPersistenceManager();
+			String qUsers="select from "+ User.class.getName()+" where email=='"+uGoogle.getEmail()+"' && status==true";
+			List<User> uSearch=(List<User>) accesoControlador.newQuery(qUsers).execute();
+			if(uSearch.isEmpty()){	
+				RequestDispatcher dp= getServletContext().getRequestDispatcher("/WEB-INF/Views/Errors/error2.jsp");
+				dp.forward(request, response);
+			}else{	
+					accesoControlador.close();
+					
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		String query = "select  from " + Proforma.class.getName();
 		List<Proforma> listas = (List<Proforma>) pm.newQuery(query).execute();
 		request.setAttribute("listas", listas);
 		request.getRequestDispatcher("/WEB-INF/Views/proformas/view.jsp").forward(request, response);
 		pm.close();
+	}
+		}
 	}
 
 }

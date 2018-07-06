@@ -41,7 +41,7 @@ public class ProformsControllerIndex extends HttpServlet {
 				RequestDispatcher dp= getServletContext().getRequestDispatcher("/WEB-INF/Views/Errors/error2.jsp");
 				dp.forward(request, response);
 			}else{
-				System.out.println(request.getServletPath());
+				
 			String query2="select from "+ Resource.class.getName()
 					+" where url == '"+request.getServletPath()+"' && status==true";
 			List <Resource> rSearch=(List<Resource>) pm.newQuery(query2).execute();

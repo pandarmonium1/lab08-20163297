@@ -93,7 +93,7 @@ body,h1,h2,h3,h4,h5,h6,p,td {color:gray; font-family: "Lato", sans-serif}
 		</select>
 		<p>Genero:</p>
 		<input type="radio" name="gender" value="mujer">Mujer <input
-			type="radio" name="gender" value="hombre">Hombre
+			type="radio" name="gender" value="hombre" checked>Hombre
 		<p>Rol:</p>
 		<select name="role">
 			<%

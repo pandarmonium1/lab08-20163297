@@ -52,6 +52,7 @@ body,h1,h2,h3,h4,h5,h6,p {color:gray; font-family: "Lato", sans-serif}
 <header class="w3-container w3-white w3-center" style="padding:128px 16px">
   <h1 class="w3-margin w3-jumbo">Access Control List</h1>
   <p class="w3-xlarge">Error en el acceso nro. 4 </p>
+  <p class="w3-xlarge">Nivel de acceso insuficiente </p>
   
   
    

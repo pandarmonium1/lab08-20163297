@@ -82,7 +82,7 @@ body,h1,h2,h3,h4,h5,h6,p,td {color:gray; font-family: "Lato", sans-serif}
 				}
 			%>
 		</select>
-		<input type="submit" value="Send">
+		<p><input type="submit" value="Send"></p>
 	</form>
 	<a href="/access" class="btn btn-info"  role="button"  >Retornar</a>
 	<%
